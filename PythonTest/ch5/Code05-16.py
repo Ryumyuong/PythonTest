@@ -5,6 +5,16 @@ from tkinter.filedialog import *
 def func_open() :
     filename = askopenfilename(parent = window, filetypes = (("GIF 파일", "*.gif"), ("모든 파일", "*.*")))
     photo = PhotoImage(file = filename)
+
+    width = photo.width()
+    height = photo.height()
+
+    for i in range(height) :
+        for k in range(width) :
+            r,g, b = photo.get(k, i)
+            grey = int((r+g+b)/3)
+            photo.put("#%02x%02x%02x" % (grey, grey, grey), (k,i))
+            
     pLabel.configure(image = photo)
     pLabel.image = photo
 

@@ -5,6 +5,7 @@ with open("C:/CookAnalysis/CSV/singer1.csv", "r") as inFp :
         header_list = header.split(',')
         header_str = ','.join(map(str, header_list))
         outFp.write(header_str + '\n')
+        # 헤더를 제외한 두번째 행부터 데이터
         for inStr in inFp:
             inStr = inStr.strip()
             row_list = inStr.split(',')

@@ -11,18 +11,21 @@ for wsName in wsheetList :
     worksheet = workbook[wsName]
     outSheet = outWorkbook.create_sheet(wsName)
     for row in range(1, worksheet.max_row+1) :
+        # 셀의 높를 동일하게 가져간다
         outSheet.row_dimensions[row].height = worksheet.row_dimensions[row].height
         for col in range(1, worksheet.max_column+1) :
+            # 셀의 폭을 동일하게 가져간다.
             outSheet.column_dimensions[chr(ord('A')+col-1)].width \
                 = worksheet.column_dimensions[chr(ord('A')+col-1)].width
             inCell = worksheet.cell(row=row, column=col)
             outCell = outSheet.cell(row=row, column=col, value= inCell.value)
+            # 기존 엑셀의 서식을 적용
             if inCell.has_style:
                 outCell.font = copy(inCell.font)
                 outCell.border = copy(inCell.border)
                 outCell.fill = copy(inCell.fill)
                 outCell.number_format = copy(inCell.number_format)
                 outCell.alignment = copy(inCell.alignment)
-
-outWorkbook.save('c:/CookAnalysis/Excel/singer_copy.xlsx')
+                
+outWorkbook.save('c:/CookAnalysis/Excel/singer_copy0629.xlsx')
 print("Save. OK~")

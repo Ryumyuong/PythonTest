@@ -16,7 +16,8 @@ for i in range(w) :
         photoG[i][k] = g
         photoB[i][k] = b
 
-workbook = xlsxwriter.Workbook('C:/CookAnalysis/Excel/pic7.xlsx')
+# 절대경로에 엑셀 파일 형식으로 쓰기 작업
+workbook = xlsxwriter.Workbook('C:/CookAnalysis/Excel/pic70629.xlsx')
 worksheetR = workbook.add_worksheet('photoR')
 worksheetG = workbook.add_worksheet('photoG')
 worksheetB = workbook.add_worksheet('photoB')

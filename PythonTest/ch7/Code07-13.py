@@ -19,10 +19,12 @@ for i in range(w) :
 workbook = xlsxwriter.Workbook('C:/CookAnalysis/Excel/picture06_art.xlsx')
 worksheet = workbook.add_worksheet('photoRGB')
 
+# 셀 크기 조절
 worksheet.set_column(0, w - 1, 1.0)  # 약 0.34
 for i in range(h):
     worksheet.set_row(i, 9.5)  # 약 0.35
 
+# 16진수로 변환
 for i in range(w) :
     for k in range(h) :
         hexR = hex(photoR[i][k])

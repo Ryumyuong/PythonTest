@@ -22,5 +22,5 @@ for csvFileName in csvFileList :
                     outSheet.write(rowCount, col, float(row_list[col]))
                 else :
                     outSheet.write(rowCount, col, row_list[col])
-            outWorkbook.save('c:/CookAnalysis/Excel/' + os.path.basename(csvFileName) + '0628.xls')        
+        outWorkbook.save('c:/CookAnalysis/Excel/' + os.path.basename(csvFileName) + '0629.xls')        
 print("Save. OK~")

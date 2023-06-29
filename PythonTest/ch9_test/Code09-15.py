@@ -29,6 +29,7 @@ while True :
         htmlObject = urllib.request.urlopen(bookUrl,context=ssl_context)
         webPage = htmlObject.read()
         bsObject = bs4.BeautifulSoup(webPage, 'html.parser')
+        
         tag = bsObject.find('ul', {'class': 'clearfix'})
         all_books = tag.findAll('div', {'class': 'goods_info'})
 

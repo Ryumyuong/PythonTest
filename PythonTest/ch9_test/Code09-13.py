@@ -8,8 +8,8 @@ import ssl
 ssl_context = ssl.SSLContext()
 ssl_context.verify_mode = ssl.CERT_NONE
 
-csvName =  'CSV/sokcho_weather.csv'
-with open(csvName, 'w', newline='') as csvFp:
+csvName =  'CSV/sokcho_weather_0629_2.csv'
+with open(csvName, 'w', newline='', encoding='utf8') as csvFp:
     csvWriter = csv.writer(csvFp)
     csvWriter.writerow(['연월일', '시분초', '온도', '습도', '강수량', '풍향'])
 
@@ -18,6 +18,7 @@ while True :
     htmlObject = urllib.request.urlopen(nateUrl,context=ssl_context)
     webPage = htmlObject.read()
     bsObject = bs4.BeautifulSoup(webPage, 'html.parser')
+
     tag = bsObject.find('div', {'class': 'right_today'})
     temper = tag.find('p', {'class': 'celsius'}).text
     humi = tag.find('p', {'class': 'humidity'}).text
@@ -29,9 +30,9 @@ while True :
     hhmmss = now.strftime('%H:%M:%S')
 
     weather_list = [yymmdd, hhmmss, temper, humi, rain, wind]
-    with open(csvName, 'a', newline='') as csvFp:
+    with open(csvName, 'a', newline='', encoding='utf8') as csvFp:
         csvWriter = csv.writer(csvFp)
         csvWriter.writerow(weather_list)
         print(weather_list)
 
-    time.sleep(60)
+    time.sleep(5)

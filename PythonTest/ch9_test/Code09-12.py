@@ -2,8 +2,8 @@ import csv
 import time
 import datetime
 
-csvName =  'CSV/datetime.csv'
-with open(csvName, 'w', newline='') as csvFp:
+csvName =  'CSV/datetime_0629.csv'
+with open(csvName, 'w', newline='', encoding='utf8') as csvFp:
     csvWriter = csv.writer(csvFp)
     csvWriter.writerow(['연월일', '시분초'])
 

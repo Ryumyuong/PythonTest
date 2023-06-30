@@ -14,19 +14,11 @@ null = None
 ## 함수 선언 부분
 def insertData(link,title, subject, company, pTime) :
     con, cur = None, None
-    data = ""
     data1, data2, data3, data4, data5= "", "", "", "", ""
     sql=""
 
     con = pymysql.connect(host='127.0.0.1', user='root', password='mysql', database='gameNews', charset='utf8')
     cur = con.cursor()
-#    title` VARCHAR(200) NULL,
-#   `publisher` VARCHAR(45) NULL,
-#   `newsDate` VARCHAR(10) NULL,
-#   `newsTime` VARCHAR(6) NULL,
-#   `newsDetail` VARCHAR(200) NULL,
-#   `newsImgUrl` VARCHAR(200) NULL,
-    # data0 = data10
     data1 = link 
     data2 = title 
     data3 = subject
@@ -34,7 +26,6 @@ def insertData(link,title, subject, company, pTime) :
     data5 = pTime
     
     try :
-        
         print(data1)
         print(data2)
         print(data3)
@@ -45,13 +36,12 @@ def insertData(link,title, subject, company, pTime) :
         
     except :
         print("예외 발생")
-        # messagebox.showerror('오류', '데이터 입력 오류가 발생함')
     else :
         print("성공")
-        # messagebox.showinfo('성공', '데이터 입력 성공')
+
     con.commit()
     con.close()
-##
+
 def remove_special_characters(sentence):
     # 정규 표현식을 사용하여 특수 문자 제거
     pattern = r'[^a-zA-Z0-9가-힣\s]'  # 영문자, 숫자, 한글, 공백을 제외한 문자 패턴

@@ -1,4 +1,4 @@
-CREATE TABLE `naverNewsLive`.`newsTable` (
+CREATE TABLE `nateNewsLive`.`newsTable` (
   `num` INT AUTO_INCREMENT,
   `title` VARCHAR(200) NULL,
   `publisher` VARCHAR(45) NULL,

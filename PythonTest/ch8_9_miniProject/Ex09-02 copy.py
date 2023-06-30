@@ -23,8 +23,8 @@ url = "http://www.yes24.com/24/Category/Display/001001003022004?ParamSortTp=05&P
 pageNumber = 1
 
 ## 메인 코드부
-csvName =  'CSV/pythonBook.csv'
-with open(csvName, 'w', newline='') as csvFp:
+csvName =  'CSV/pythonBook_0629.csv'
+with open(csvName, 'w', newline='', encoding='utf8') as csvFp:
     csvWriter = csv.writer(csvFp)
     csvWriter.writerow(['책이름', '저자', '출판사', '출간일', '가격'])
 
@@ -36,12 +36,13 @@ while True :
         htmlObject = urllib.request.urlopen(bookUrl,context=ssl_context)
         webPage = htmlObject.read()
         bsObject = bs4.BeautifulSoup(webPage, 'html.parser')
+
         tag = bsObject.find('ul', {'class': 'clearfix'})
         all_books = tag.findAll('div', {'class': 'goods_info'})
 
         for book in all_books:
             info_list = getBookInfo(book)
-            with open(csvName, 'a', newline='') as csvFp:
+            with open(csvName, 'a', newline='', encoding='utf8') as csvFp:
                 csvWriter = csv.writer(csvFp)
                 csvWriter.writerow(info_list)
 

@@ -8,7 +8,7 @@ def insertData() :
     data1, data2, data3, data4 = "", "", "", ""
     sql=""
 
-    con = pymysql.connect(host='127.0.0.1', user='root', password='1234', database='naverDB', charset='utf8')
+    con = pymysql.connect(host='127.0.0.1', user='root', password='mysql', database='naverDB', charset='utf8')
     cur = con.cursor()
 
     data1 = edt1.get(); data2 = edt2.get(); data3 = edt3.get(); data4 = edt4.get()

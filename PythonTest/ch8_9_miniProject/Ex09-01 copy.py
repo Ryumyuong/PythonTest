@@ -18,7 +18,7 @@ def insertData(subject,press,pDate,pTime,link,imgLinkUrl) :
     data0, data1, data2, data3, data4, data5, data6 = "", "", "", "", "", "",""
     sql=""
 
-    con = pymysql.connect(host='127.0.0.1', user='root', password='1234', database='naverNewsLive', charset='utf8')
+    con = pymysql.connect(host='127.0.0.1', user='root', password='mysql', database='nateNewsLive', charset='utf8')
     cur = con.cursor()
 #    title` VARCHAR(200) NULL,
 #   `publisher` VARCHAR(45) NULL,
@@ -55,28 +55,32 @@ def insertData(subject,press,pDate,pTime,link,imgLinkUrl) :
     con.commit()
     con.close()
 ##
-
-nateUrl = "https://news.nate.com/recent?mid=n0100"
+num = 1
+nateUrl = "https://news.nate.com/recent?mid=n0100&page="
 while True :
-    htmlObject = urllib.request.urlopen(nateUrl,context=ssl_context)
+    Url = nateUrl + str(num)
+    num += 1
+    htmlObject = urllib.request.urlopen(Url,context=ssl_context)
     webPage = htmlObject.read()
     bsObject = bs4.BeautifulSoup(webPage, 'html.parser')
     tag_list = bsObject.findAll('div', {'class': 'mlt01'})
 
     print('###### 실시간 뉴스 속보 #######')
-    num = 1
+    
     for tag in tag_list :
 
-        subject = tag.find('strong', {'class': 'tit'}).text
+        subject = tag.find('h2', {'class': 'tit'}).text
         link = tag.find('a', {'class': 'lt1'})['href']
         link = 'https:' + link
         imgLink = tag.find('em',{'class':'mediatype'})
+        # 파이썬은 null대신 None
         if imgLink != None:
             imgLinkUrl = imgLink.find('img')['src']
             imgLinkUrl = 'https:' + imgLinkUrl
         else :
             imgLinkUrl = '이미지가 존재 하지 않음'
         pressAndDate = tag.find('span', {'class': 'medium'}).text
+        print("pressAndDate" +pressAndDate)
         pressAndDate.replace('\t',' ')
         pressAndDate.replace('\n', '')
 
@@ -91,6 +95,5 @@ while True :
         print('(' , num, ')', subject)
         print('\t https:'+link, press, pDate, pTime)
         print('\t imgLink : '+ imgLinkUrl)
-        num += 1
 
-    time.sleep(60)
+    time.sleep(20)

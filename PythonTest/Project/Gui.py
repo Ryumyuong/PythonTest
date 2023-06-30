@@ -27,6 +27,9 @@ if response.status_code == 200:
         else :
             df4[columns] = datas[columns]
     print(df4)
+
+    # 데이터프레임을 엑셀 파일로 저장
+    df4.to_excel('C:/Temp/data.xlsx', index=False)
             
 else:
     print('Error:', response.status_code)
